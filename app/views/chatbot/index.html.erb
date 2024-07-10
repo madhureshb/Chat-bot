@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chatbot</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+</head>
+<body>
+  <h1>Chat with Our Bot</h1>
+  <form id="chat-form">
+    <input type="text" id="question" placeholder="Ask me anything..." required>
+    <button type="submit">Send</button>
+  </form>
+  <div id="chat-log"></div>
+
+  <script>
+    document.getElementById('chat-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const question = document.getElementById('question').value;
+      fetch('/ask', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: JSON.stringify({ question: question })
+      })
+      .then(response => response.json())
+      .then(data => {
+        const chatLog = document.getElementById('chat-log');
+        chatLog.innerHTML += `<p><strong>You:</strong> ${question}</p>`;
+        chatLog.innerHTML += `<p><strong>Bot:</strong> ${data.answer}</p>`;
+        document.getElementById('question').value = '';
+      });
+    });
+  </script>
+</body>
+</html>
