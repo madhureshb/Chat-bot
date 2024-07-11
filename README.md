@@ -5,20 +5,17 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version: 3.0.0
 
-* System dependencies
+* Rails version: 7.0.8
 
-* Configuration
+* follow these below steps:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+- Clone the repository: git clone https://github.com/madhureshb/Chat-bot.git
+- Go to the project directory: cd Chat-bot
+- Create a .env file in the root directory and add a ENV variable with         HUGGING_FACE_API_KEY=YOUR_HUGGINGFACE_ACCESS_KEY
+- YOUR_HUGGINGFACE_ACCESS_KEY: Create a new account on Huggingface website and in setting create a new Access token
+- Run bundle install/ bundle update
+- Run the application: rails s -p 3009
 
 * ...
